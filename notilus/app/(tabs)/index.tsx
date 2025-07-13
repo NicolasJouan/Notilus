@@ -1,13 +1,26 @@
 import { Link } from "expo-router";
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, TextInput } from "react-native";
+import { useEffect, useState } from "react";
+import * as SQLite from 'expo-sqlite'
+
 
 export default function Index() {
+  const [text, setText] = useState('')
+  
+  //import from the database the note saved on opening the page
+  useEffect(() => { setText('Hi serpentus')}, [])
+
+
+
   return (
     <View
       style={styles.container}
     >
-      <Text style={styles.text}>Edit app/index.tsx to edit this screen.</Text>
-      <Link href={"/about"}>About</Link>
+      <Text style={styles.text}>This is the Notes page</Text>
+      <View>
+        <Link href={"/(tabs)/to-do"}>To Do</Link>
+      </View>
+      <TextInput value={text} onChangeText={setText} placeholder="Write here..."></TextInput>
     </View>
   );
 }
@@ -17,12 +30,12 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex : 1,
-    backgroundColor: 'blue',
+    backgroundColor: 'white',
     alignItems : 'center',
     justifyContent : 'center',
   },
   text : {
-    color : 'red',
+    color : 'purple',
   }
 
 })
